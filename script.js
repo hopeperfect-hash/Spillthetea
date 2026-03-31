@@ -232,32 +232,39 @@ function endGame() {
     document.getElementById('game-over-panel').classList.remove('hidden');
 }
 
-function renderLeaderboard() {
-    const scores = JSON.parse(localStorage.getItem('neon_tea_scores') || '{}');
+const DB_URL = 'https://kvdb.io/neon_tea_v1_6P4v9K7X8M9N0B1V2/scores'; // Public JSON KV bucket
+
+async function renderLeaderboard() {
     const container = document.getElementById('leaderboard-list');
-    
     if (!container) return;
 
-    container.innerHTML = '';
+    container.innerHTML = `<div class="leader-row"><span class="leader-name">Sipping tea from cloud... 🍵</span></div>`;
     
-    // Convert to sorted array
-    const scoreArray = Object.keys(scores).map(name => ({ name, score: scores[name] }));
-    scoreArray.sort((a, b) => b.score - a.score);
+    try {
+        const res = await fetch(DB_URL);
+        const scores = await res.json();
+        
+        container.innerHTML = '';
+        const scoreArray = Object.keys(scores).map(name => ({ name, score: scores[name] }));
+        scoreArray.sort((a, b) => b.score - a.score);
 
-    if (scoreArray.length === 0) {
-        container.innerHTML = `<div class="leader-row"><span class="leader-name">No players yet... spilt the tea!</span></div>`;
-        return;
+        if (scoreArray.length === 0) {
+            container.innerHTML = `<div class="leader-row"><span class="leader-name">No players yet... spilt the tea!</span></div>`;
+            return;
+        }
+
+        scoreArray.forEach(p => {
+            container.innerHTML += `
+                <div class="leader-row">
+                    <span class="leader-name">${p.name}</span>
+                    <span class="leader-dots"></span>
+                    <span class="leader-score">${p.score} pts</span>
+                </div>
+            `;
+        });
+    } catch (err) {
+        container.innerHTML = `<div class="leader-row"><span class="leader-name">Cloud sync failed. You are the first!</span></div>`;
     }
-
-    scoreArray.forEach(p => {
-        container.innerHTML += `
-            <div class="leader-row">
-                <span class="leader-name">${p.name}</span>
-                <span class="leader-dots"></span>
-                <span class="leader-score">${p.score} pts</span>
-            </div>
-        `;
-    });
 }
 
 function setupEventListeners() {
@@ -316,14 +323,35 @@ function setupEventListeners() {
     }
 }
 
-function saveCurrentScore() {
+async function saveCurrentScore() {
     if (currentPlayerName) {
-        const scores = JSON.parse(localStorage.getItem('neon_tea_scores') || '{}');
-        const currentHigh = scores[currentPlayerName] || 0;
-        
-        if (streak > currentHigh) {
-            scores[currentPlayerName] = streak;
-            localStorage.setItem('neon_tea_scores', JSON.stringify(scores));
+        try {
+            // Read cloud scores first to merge
+            const res = await fetch(DB_URL);
+            let globalScores = {};
+            if (res.ok) {
+                globalScores = await res.json();
+            }
+            
+            const currentHigh = globalScores[currentPlayerName] || 0;
+            
+            if (streak > currentHigh) {
+                globalScores[currentPlayerName] = streak;
+                
+                await fetch(DB_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(globalScores)
+                });
+            }
+        } catch (err) {
+            console.error("Cloud save failed", err);
+            // Silent fallback to local
+            const scores = JSON.parse(localStorage.getItem('neon_tea_scores') || '{}');
+            if (streak > (scores[currentPlayerName] || 0)) {
+                scores[currentPlayerName] = streak;
+                localStorage.setItem('neon_tea_scores', JSON.stringify(scores));
+            }
         }
     }
 }

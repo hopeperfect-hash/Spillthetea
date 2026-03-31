@@ -312,8 +312,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: auto;
-    padding-bottom: 10px;
+    margin-top: 15px !important; /* Removed auto to tighten spacing */
+    padding-bottom: 20px;
 }
 
 .primary-btn {
@@ -377,27 +377,46 @@ body {
     border: none;
     cursor: pointer;
     display: flex;
+    flex-direction: row !important; /* Side-by-side icons and labels */
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    gap: 8px !important; /* Space between icon and text */
+    width: auto;
+    min-width: 80px;
+    height: auto;
+    padding: 10px 16px !important; /* Horizontal padding for rows */
+    border-radius: 20px !important; /* Pill style */
     transition: all 0.2s ease;
 }
 
 .tab-icon {
-    font-size: 20px;
-    opacity: 0.4;
+    font-size: 24px;
+    opacity: 0.5;
     color: var(--text-primary);
+    margin-bottom: 0 !important; /* Reset margins */
+}
+
+.tab-label {
+    font-size: 14px !important; /* Bigger legibility */
+    color: #FFF !important; /* Pure White! */
+    font-weight: 700 !important; /* Bolder */
+    text-transform: uppercase !important; /* ALL CAPS */
+    letter-spacing: 0.5px;
+    opacity: 0.7 !important; /* Subtly faded for inactive */
 }
 
 .tab-item.active {
-    background: var(--neon-purple-dim);
+    background: rgba(199, 98, 255, 0.1);
 }
 
 .tab-item.active .tab-icon {
     opacity: 1;
     color: var(--neon-purple);
+}
+
+.tab-item.active .tab-label {
+    opacity: 1 !important;
+    color: #FFF !important; /* Pure White for active too! */
 }
 
 .tab-item.active .sparkles {
@@ -600,12 +619,12 @@ body {
 /* Funny Pug Meme Background for Welcome Screen */
 #login-panel {
     background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 90%), url('login_meme_bg.png') no-repeat center top !important;
-    background-size: 130% auto !important; /* Zooms it in 30% more than 100% width! */
+    background-size: 130% auto !important;
     background-color: #000 !important;
     display: flex !important;
-    align-items: flex-end !important; /* Push card back to bottom */
-    justify-content: center !important; /* Center horizontally */
-    padding-bottom: 40px !important; /* Spacing from bottom */
+    align-items: flex-end !important;
+    justify-content: center !important;
+    padding-bottom: 100px !important; /* Lifted up by 60px to avoid clash with device bottom bar */
 }
 
 .brand-badge {
@@ -620,10 +639,11 @@ body {
 }
 
 .login-glass-card {
-    max-width: 360px !important; /* Narrower so right-side splash is visible! */
+    max-width: 360px !important;
     width: 100% !important;
-    background: rgba(0, 0, 0, 0.4) !important; /* Slightly more transparent to reveal pug fade! */
-    border: 1px solid rgba(253, 12, 193, 0.2) !important; /* Thinner border */
+    padding: 20px !important; /* Made tighter/shorter */
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(253, 12, 193, 0.2) !important;
     box-shadow: 0 0 40px rgba(253, 12, 193, 0.1), inset 0 0 20px rgba(12, 253, 241, 0.05) !important;
 }
 
