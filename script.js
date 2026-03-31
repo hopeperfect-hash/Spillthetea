@@ -232,7 +232,26 @@ function endGame() {
     document.getElementById('game-over-panel').classList.remove('hidden');
 }
 
-const DB_URL = 'https://kvdb.io/neon_tea_v1_6P4v9K7X8M9N0B1V2/scores'; // Public JSON KV bucket
+// --- Firebase Cloud Sync Config ---
+const firebaseConfig = {
+  apiKey: "AIzaSyBFQJKwcujMj9szdgvmfXo34pJ14SblXHw",
+  authDomain: "neon-tea.firebaseapp.com",
+  projectId: "neon-tea",
+  storageBucket: "neon-tea.firebasestorage.app",
+  messagingSenderId: "126308339122",
+  appId: "1:126308339122:web:8b16b13241d882b302a8ab",
+  measurementId: "G-NFHD7CBLPR"
+};
+
+let db;
+try {
+    if (firebaseConfig.apiKey !== "YOUR_API_KEY" && !firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore();
+    }
+} catch (e) {
+    console.warn("Firebase not loaded. Please fill in your keys!");
+}
 
 async function renderLeaderboard() {
     const container = document.getElementById('leaderboard-list');
@@ -240,20 +259,23 @@ async function renderLeaderboard() {
 
     container.innerHTML = `<div class="leader-row"><span class="leader-name">Sipping tea from cloud... 🍵</span></div>`;
     
-    try {
-        const res = await fetch(DB_URL);
-        const scores = await res.json();
-        
-        container.innerHTML = '';
-        const scoreArray = Object.keys(scores).map(name => ({ name, score: scores[name] }));
-        scoreArray.sort((a, b) => b.score - a.score);
+    // Fallback if keys are not filled
+    if (!db) {
+        container.innerHTML = `<div class="leader-row"><span class="leader-name">Please insert your Firebase keys in script.js!</span></div>`;
+        return;
+    }
 
-        if (scoreArray.length === 0) {
+    try {
+        const snapshot = await db.collection('scores').orderBy('score', 'desc').limit(50).get();
+        container.innerHTML = '';
+
+        if (snapshot.empty) {
             container.innerHTML = `<div class="leader-row"><span class="leader-name">No players yet... spilt the tea!</span></div>`;
             return;
         }
 
-        scoreArray.forEach(p => {
+        snapshot.forEach(doc => {
+            const p = doc.data();
             container.innerHTML += `
                 <div class="leader-row">
                     <span class="leader-name">${p.name}</span>
@@ -263,7 +285,7 @@ async function renderLeaderboard() {
             `;
         });
     } catch (err) {
-        container.innerHTML = `<div class="leader-row"><span class="leader-name">Cloud sync failed. You are the first!</span></div>`;
+        container.innerHTML = `<div class="leader-row"><span class="leader-name">Failed to read Firebase database. Check rules.</span></div>`;
     }
 }
 
@@ -324,34 +346,33 @@ function setupEventListeners() {
 }
 
 async function saveCurrentScore() {
-    if (currentPlayerName) {
+    if (currentPlayerName && db) {
         try {
-            // Read cloud scores first to merge
-            const res = await fetch(DB_URL);
-            let globalScores = {};
-            if (res.ok) {
-                globalScores = await res.json();
-            }
+            const docRef = db.collection('scores').doc(currentPlayerName);
+            const doc = await docRef.get();
             
-            const currentHigh = globalScores[currentPlayerName] || 0;
-            
-            if (streak > currentHigh) {
-                globalScores[currentPlayerName] = streak;
-                
-                await fetch(DB_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(globalScores)
-                });
+            if (!doc.exists || streak > (doc.data().score || 0)) {
+                await docRef.set({
+                    name: currentPlayerName,
+                    score: streak,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
             }
         } catch (err) {
-            console.error("Cloud save failed", err);
-            // Silent fallback to local
+            console.error("Firebase save failed", err);
+            // Fallback to local
             const scores = JSON.parse(localStorage.getItem('neon_tea_scores') || '{}');
             if (streak > (scores[currentPlayerName] || 0)) {
                 scores[currentPlayerName] = streak;
                 localStorage.setItem('neon_tea_scores', JSON.stringify(scores));
             }
+        }
+    } else {
+        // Fallback if Firebase keys omitted
+        const scores = JSON.parse(localStorage.getItem('neon_tea_scores') || '{}');
+        if (currentPlayerName && streak > (scores[currentPlayerName] || 0)) {
+            scores[currentPlayerName] = streak;
+            localStorage.setItem('neon_tea_scores', JSON.stringify(scores));
         }
     }
 }
