@@ -1,0 +1,718 @@
+/* Root CSS Variables for Consistent Neon Theme */
+:root {
+    --bg-dark: #0B0813;
+    --card-bg: rgba(25, 18, 41, 0.6);
+    --neon-purple: #C762FF;
+    --neon-purple-dim: rgba(199, 98, 255, 0.2);
+    --neon-magenta: #FF2E93;
+    --neon-green: #0CFD7F;
+    --neon-green-dim: rgba(12, 253, 127, 0.2);
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-neon: rgba(199, 98, 255, 0.4);
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: 'Outfit', 'Space Grotesk', sans-serif;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* App Wrapper for Mobile Layout */
+.app-container {
+    width: 390px;
+    height: 844px; /* Typical iPhone screen size */
+    background: #0D0B16;
+    border-radius: 40px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), inset 0 0 0 1px var(--border-glass);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header UI */
+.app-header {
+    padding: 24px 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-ring {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-magenta));
+    padding: 2px;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #1A1528;
+}
+
+.logo-title {
+    font-size: 32px; /* Bigger, bolder */
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-align: center;
+    background: linear-gradient(90deg, #FFFFFF, var(--neon-purple), var(--neon-magenta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px var(--neon-purple); /* Increased Glow */
+}
+
+.clout-pill {
+    background: rgba(255, 46, 147, 0.15);
+    border: 1px solid var(--neon-magenta);
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+.pill-value {
+    color: var(--neon-magenta);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* Main Viewport Constraints */
+.game-viewport {
+    flex: 1;
+    padding: 0 20px 20px; /* Removed top padding to allow sticky stats to touch top */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+/* Game Stats (Streak & Timer) */
+.game-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: transparent; /* Transparent to let flares bleed through */
+    backdrop-filter: blur(5px); /* Reduced blur */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.streak-value-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fire-icon {
+    font-size: 24px;
+}
+
+.streak-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--neon-green);
+    text-shadow: 0 0 15px var(--neon-green-dim);
+}
+
+/* Circular Timer */
+.timer-container {
+    width: 64px;
+    height: 64px;
+    position: relative;
+}
+
+.timer-circle-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.timer-svg {
+    transform: rotate(-90deg);
+}
+
+.timer-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 8;
+}
+
+.timer-progress {
+    fill: none;
+    stroke: var(--neon-purple);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 283; /* 2 * PI * r (r=45) */
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+}
+
+.timer-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.timer-digits {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-shadow: 0 0 10px var(--neon-purple-dim);
+}
+
+/* Glass Question Card */
+.glass-panel {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 20px;
+    position: relative;
+}
+
+.question-backdrop {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.badge-magenta {
+    background: rgba(255, 46, 147, 0.2);
+    color: var(--neon-magenta);
+    border: 1px solid rgba(255, 46, 147, 0.4);
+}
+
+.question-content {
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--neon-green);
+    box-shadow: 0 0 8px var(--neon-green);
+}
+
+.pulsing {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0.6; }
+}
+
+.status-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--neon-green);
+    letter-spacing: 0.5px;
+}
+
+/* Options Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.glass-button {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 24px 16px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.glass-button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.glass-button.selected {
+    background: rgba(199, 98, 255, 0.1);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 20px var(--neon-purple-dim);
+}
+
+/* Actions */
+.actions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+    padding-bottom: 10px;
+}
+
+.primary-btn {
+    background: linear-gradient(90deg, var(--neon-purple), var(--neon-magenta));
+    border: none;
+    border-radius: 24px;
+    padding: 18px;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.primary-btn:active {
+    transform: scale(0.98);
+}
+
+.pulse-glow {
+    box-shadow: 0 0 25px rgba(199, 98, 255, 0.4);
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 2px solid var(--neon-green);
+    border-radius: 24px;
+    padding: 16px;
+    color: var(--neon-green);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+}
+
+.secondary-btn:hover {
+    background: rgba(12, 253, 127, 0.05);
+}
+
+/* Bottom Tabs Navigation */
+.bottom-tabs {
+    height: 80px;
+    background: rgba(13, 11, 22, 0.9);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px 15px;
+}
+
+.tab-item {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.tab-icon {
+    font-size: 20px;
+    opacity: 0.4;
+    color: var(--text-primary);
+}
+
+.tab-item.active {
+    background: var(--neon-purple-dim);
+}
+
+.tab-item.active .tab-icon {
+    opacity: 1;
+    color: var(--neon-purple);
+}
+
+.tab-item.active .sparkles {
+    color: var(--neon-magenta);
+}
+
+/* Scrollbar styling for smooth experience */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+/* Image-based Options Styles */
+.option-with-img {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    text-align: center;
+}
+
+.img-frame {
+    width: 100%;
+    aspect-ratio: 1; /* Square */
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5); /* Slightly darker */
+    border: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.celebrity-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Back to cover, but use position for top-heavy faces */
+    object-position: center 20%; /* Keep heads up! */
+    transition: transform 0.3s ease;
+}
+
+.option-with-img:hover .celebrity-img {
+    transform: scale(1.05);
+}
+
+/* Distinct Success (Green) and Failure (Red) Fullscreen Flare Animation */
+.flare-success {
+    animation: flare-success-anim 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes flare-success-anim {
+    0% { 
+        background-color: var(--bg-dark); 
+    }
+    30% { 
+        background-color: rgba(12, 253, 127, 0.5); /* Neon Green flash */
+        box-shadow: 0 0 100px var(--neon-green); 
+    }
+    100% { 
+        background-color: var(--bg-dark); 
+        box-shadow: none;
+    }
+}
+
+.flare-failure {
+    animation: flare-failure-anim 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes flare-failure-anim {
+    0% { 
+        background-color: var(--bg-dark); 
+    }
+    30% { 
+        background-color: rgba(255, 59, 48, 0.5); /* Neon Red flash */
+        box-shadow: 0 0 100px rgba(255, 59, 48, 0.8); 
+    }
+    100% { 
+        background-color: var(--bg-dark); 
+        box-shadow: none;
+    }
+}
+
+/* Question Sliding Dramatic Transition Effects */
+.slide-out {
+    animation: slide-out-up-anim 0.4s ease-out forwards;
+}
+
+.slide-in {
+    animation: slide-in-bottom-anim 0.4s ease-out forwards;
+}
+
+@keyframes slide-out-up-anim {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+}
+
+/* Game Over / Victory Overlay Overlay styles */
+.game-over-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 11, 22, 0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+.game-over-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.over-card {
+    width: 85%;
+    padding: 30px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--neon-purple);
+    box-shadow: 0 0 30px var(--neon-purple-dim);
+}
+
+.over-title {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #FFFFFF, var(--neon-magenta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 46, 147, 0.5);
+    margin: 0;
+}
+
+.over-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.final-score-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.final-label {
+    font-size: 16px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.final-number {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--neon-green);
+    text-shadow: 0 0 20px rgba(12, 253, 127, 0.5);
+}
+
+.reboot-btn {
+    width: 100%;
+    margin-top: 10px;
+    background: rgba(199, 98, 255, 0.1);
+    border: 1px solid var(--neon-purple);
+    color: #FFF;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    padding: 14px;
+}
+
+.reboot-btn:hover {
+    background: rgba(199, 98, 255, 0.3);
+    box-shadow: 0 0 20px var(--neon-purple);
+}
+
+/* Funny Pug Meme Background for Welcome Screen */
+#login-panel {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 90%), url('login_meme_bg.png') no-repeat center top !important;
+    background-size: 130% auto !important; /* Zooms it in 30% more than 100% width! */
+    background-color: #000 !important;
+    display: flex !important;
+    align-items: flex-end !important; /* Push card back to bottom */
+    justify-content: center !important; /* Center horizontally */
+    padding-bottom: 40px !important; /* Spacing from bottom */
+}
+
+.brand-badge {
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    color: var(--neon-cyan) !important;
+    text-shadow: 0 0 10px rgba(12, 253, 241, 0.5) !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+}
+
+.login-glass-card {
+    max-width: 360px !important; /* Narrower so right-side splash is visible! */
+    width: 100% !important;
+    background: rgba(0, 0, 0, 0.4) !important; /* Slightly more transparent to reveal pug fade! */
+    border: 1px solid rgba(253, 12, 193, 0.2) !important; /* Thinner border */
+    box-shadow: 0 0 40px rgba(253, 12, 193, 0.1), inset 0 0 20px rgba(12, 253, 241, 0.05) !important;
+}
+
+/* Big Name Input UI */
+.glass-input {
+    width: 100% !important;
+    font-size: 24px !important;
+    padding: 16px !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 46, 147, 0.5) !important;
+    border-radius: 12px !important;
+    color: #FFF !important;
+    text-align: center !important;
+    box-shadow: 0 0 25px rgba(255, 46, 147, 0.2) !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.glass-input:focus {
+    border-color: rgba(12, 253, 241, 0.8) !important;
+    box-shadow: 0 0 35px rgba(12, 253, 241, 0.4) !important;
+}
+
+/* Classy Center-Aligned Button (Full Width to Match Input) */
+#login-btn {
+    width: 100% !important;
+    margin: 20px auto 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 16px 32px !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    border-radius: 30px !important; /* Classy pill */
+    background: linear-gradient(90deg, #ff2e93, #c762ff) !important;
+    box-shadow: 0 0 30px rgba(255, 46, 147, 0.6) !important;
+    color: #FFF !important;
+    border: none !important;
+    cursor: pointer !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+}
+
+/* Leaderboard Dots and Close Icon */
+.relative-card {
+    position: relative !important;
+    width: 90% !important;
+    max-width: 600px !important; /* Widen the card to give dots 300% more space! */
+}
+
+.close-icon-btn {
+    position: absolute !important;
+    top: 15px !important;
+    right: 20px !important;
+    background: none !important;
+    border: none !important;
+    font-size: 28px !important;
+    color: #FFF !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    transition: transform 0.2s ease !important;
+}
+
+.close-icon-btn:hover {
+    transform: scale(1.2) !important;
+    color: var(--neon-cyan) !important;
+}
+
+.leader-row {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-bottom: 12px !important;
+}
+
+.leader-name {
+    flex-shrink: 0 !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+}
+
+.leader-dots {
+    flex-grow: 1 !important;
+    border-bottom: 2px dotted rgba(255, 255, 255, 0.3) !important;
+    margin: 0 10px !important;
+}
+
+.leader-score {
+    flex-shrink: 0 !important;
+    font-weight: 800 !important;
+    color: var(--neon-green) !important;
+}
