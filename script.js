@@ -48,6 +48,9 @@ function initGame() {
         questions.push(pool.pop());
     }
 
+    // 2.5 Shuffle entire combined pool so it's different per player!
+    shuffleArray(questions);
+
     // 3. Space apart questions featuring the same celebrities
     spaceApartAdjacentCelebrities(questions);
 
