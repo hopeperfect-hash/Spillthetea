@@ -24,18 +24,6 @@ const QUESTIONS_STATIC = [
         "correctIndex": 1
     },
     {
-        "text": "A leaked script shows This Celebrity set to play the lead in a new spy thriller.",
-        "options": [
-            "Elon Musk",
-            "Bill Gates"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/0/0e/Elon_Musk_%2854816836217%29_%28cropped_2%29_%28b%29.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/d/d9/Bill_Gates_at_the_European_Commission_-_P067383-987995_%28cropped%29_5.jpg"
-        ],
-        "correctIndex": 0
-    },
-    {
         "text": "Did This Celebrity just announce a surprise album drop next Friday?",
         "options": [
             "Robert Downey Jr.",
@@ -44,18 +32,6 @@ const QUESTIONS_STATIC = [
         "images": [
             "https://upload.wikimedia.org/wikipedia/commons/2/23/Robert_Downey_Jr._2014_Comic-Con.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/5/58/Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2.jpg"
-        ],
-        "correctIndex": 1
-    },
-    {
-        "text": "A leaked script shows This Celebrity set to play the lead in a new spy thriller.",
-        "options": [
-            "Jeff Bezos",
-            "Bill Gates"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/0/03/Jeff_Bezos_visits_LAAFB_SMC_%283908618%29_%28cropped%29.jpeg",
-            "https://upload.wikimedia.org/wikipedia/commons/d/d9/Bill_Gates_at_the_European_Commission_-_P067383-987995_%28cropped%29_5.jpg"
         ],
         "correctIndex": 1
     },
@@ -106,18 +82,6 @@ const QUESTIONS_STATIC = [
             "https://upload.wikimedia.org/wikipedia/commons/6/67/Cristiano_Ronaldo_2275_%28cropped%29.jpg"
         ],
         "correctIndex": 0
-    },
-    {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Rihanna",
-            "Madonna"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/c/c2/Rihanna_Fenty_2018.png",
-            "https://upload.wikimedia.org/wikipedia/commons/7/78/MadonnaO2171023_%2897_of_133%29_%2853269593787%29_%28cropped%29.jpg"
-        ],
-        "correctIndex": 1
     },
     {
         "text": "Rumor has it This Celebrity was seen wearing a hidden track suit in Paris.",
@@ -176,30 +140,6 @@ const QUESTIONS_STATIC = [
         "images": [
             "https://upload.wikimedia.org/wikipedia/commons/0/0e/Elon_Musk_%2854816836217%29_%28cropped_2%29_%28b%29.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/0/03/Jeff_Bezos_visits_LAAFB_SMC_%283908618%29_%28cropped%29.jpeg"
-        ],
-        "correctIndex": 1
-    },
-    {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Tiger Woods",
-            "LeBron James"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/a/a7/President_Donald_Trump_hosts_a_reception_honoring_Black_History_Month_%2854341713089%29_%28cropped%29.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/7/7a/LeBron_James_%2851959977144%29_%28cropped2%29.jpg"
-        ],
-        "correctIndex": 1
-    },
-    {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Bill Gates",
-            "Tim Cook"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/d/d9/Bill_Gates_at_the_European_Commission_-_P067383-987995_%28cropped%29_5.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/8/88/Tim_Cook_March_2026_%28cropped%29.jpg"
         ],
         "correctIndex": 1
     },
@@ -264,18 +204,6 @@ const QUESTIONS_STATIC = [
         "correctIndex": 1
     },
     {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Conor McGregor",
-            "Stephen Curry"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/e/e5/Conor_McGregor_2025.jpeg",
-            "https://upload.wikimedia.org/wikipedia/commons/f/f1/Steph_Curry_P20230117AS-1347_%28cropped%29.jpg"
-        ],
-        "correctIndex": 0
-    },
-    {
         "text": "Fans are convinced This Celebrity is hiding a secret tattoo on their wrist.",
         "options": [
             "Karol G",
@@ -286,18 +214,6 @@ const QUESTIONS_STATIC = [
             "https://upload.wikimedia.org/wikipedia/commons/d/da/Britney_Spears_2013_%28Straighten_Crop%29.jpg"
         ],
         "correctIndex": 1
-    },
-    {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Chris Pratt",
-            "Will Smith"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/b/bf/Chris_Pratt_Jurassic_World_Fallen_Kingdom_Japan_Premiere_Red_Carpet_%283x4_cropped%29.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/5/55/TechCrunch_Disrupt_San_Francisco_2019_-_Day_1_%2848834070763%29_%28cropped%29.jpg"
-        ],
-        "correctIndex": 0
     },
     {
         "text": "A leaked script shows This Celebrity set to play the lead in a new spy thriller.",
@@ -324,18 +240,6 @@ const QUESTIONS_STATIC = [
         "correctIndex": 0
     },
     {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Jennifer Aniston",
-            "Margot Robbie"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/1/16/JenniferAnistonHWoFFeb2012.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/5/57/SYDNEY%2C_AUSTRALIA_-_JANUARY_23_Margot_Robbie_arrives_at_the_Australian_Premiere_of_%27I%2C_Tonya%27_on_January_23%2C_2018_in_Sydney%2C_Australia_%2828074883999%29_%28cropped_2%29.jpg"
-        ],
-        "correctIndex": 0
-    },
-    {
         "text": "Sources say This Celebrity was spotted house hunting in Montecito.",
         "options": [
             "LeBron James",
@@ -356,18 +260,6 @@ const QUESTIONS_STATIC = [
         "images": [
             "https://upload.wikimedia.org/wikipedia/commons/7/7a/George_Clooney_Jay_Kelly-19_%28cropped%29.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/b/b4/Keanu_Reeves_at_TIFF_2025_02_%28Cropped%29.jpg"
-        ],
-        "correctIndex": 1
-    },
-    {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "LeBron James",
-            "Conor McGregor"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/7/7a/LeBron_James_%2851959977144%29_%28cropped2%29.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/e/e5/Conor_McGregor_2025.jpeg"
         ],
         "correctIndex": 1
     },
@@ -504,18 +396,6 @@ const QUESTIONS_STATIC = [
         "correctIndex": 1
     },
     {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Lionel Messi",
-            "Lewis Hamilton"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/2/27/Lionel_Messi_NE_Revolution_Inter_Miami_7.9.25-178.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/d/d3/Prime_Minister_Keir_Starmer_meets_Sir_Lewis_Hamilton_%2854566928382%29_%28cropped%29.jpg"
-        ],
-        "correctIndex": 1
-    },
-    {
         "text": "Sources say This Celebrity was spotted house hunting in Montecito.",
         "options": [
             "Tiger Woods",
@@ -608,18 +488,6 @@ const QUESTIONS_STATIC = [
         "images": [
             "https://upload.wikimedia.org/wikipedia/commons/7/7f/Emma_Watson_2013.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/5/59/Blake_Lively_2018_%28cropped_2%29.jpg"
-        ],
-        "correctIndex": 0
-    },
-    {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Lewis Hamilton",
-            "Cristiano Ronaldo"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/d/d3/Prime_Minister_Keir_Starmer_meets_Sir_Lewis_Hamilton_%2854566928382%29_%28cropped%29.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/6/67/Cristiano_Ronaldo_2275_%28cropped%29.jpg"
         ],
         "correctIndex": 0
     },
@@ -828,18 +696,6 @@ const QUESTIONS_STATIC = [
         "correctIndex": 0
     },
     {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Florence Pugh",
-            "Halle Berry"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/9/9e/Florence_Pugh_at_the_2024_Toronto_International_Film_Festival_13_%28cropped_2_%E2%80%93_color_adjusted%29.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/a/aa/Halle_Berry-1910.jpg"
-        ],
-        "correctIndex": 0
-    },
-    {
         "text": "Sources say This Celebrity was spotted house hunting in Montecito.",
         "options": [
             "Katy Perry",
@@ -900,30 +756,6 @@ const QUESTIONS_STATIC = [
         "correctIndex": 1
     },
     {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Antonio Banderas",
-            "Chris Pratt"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/7/72/Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/b/bf/Chris_Pratt_Jurassic_World_Fallen_Kingdom_Japan_Premiere_Red_Carpet_%283x4_cropped%29.jpg"
-        ],
-        "correctIndex": 1
-    },
-    {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Scarlett Johansson",
-            "Zendaya"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/a/ad/Scarlett_Johansson-8588.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/2/28/Zendaya_-_2019_by_Glenn_Francis.jpg"
-        ],
-        "correctIndex": 0
-    },
-    {
         "text": "Fans are convinced This Celebrity is hiding a secret tattoo on their wrist.",
         "options": [
             "Cardi B",
@@ -931,18 +763,6 @@ const QUESTIONS_STATIC = [
         ],
         "images": [
             "https://upload.wikimedia.org/wikipedia/commons/3/36/Cardi_B_March_2024.png",
-            "https://upload.wikimedia.org/wikipedia/commons/e/ef/KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg"
-        ],
-        "correctIndex": 0
-    },
-    {
-        "text": "Reports claim This Celebrity was the secret guest at the Met Gala after-party.",
-        "options": [
-            "Selena Gomez",
-            "Katy Perry"
-        ],
-        "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/8/81/Selena_Gomez_at_the_2024_Toronto_International_Film_Festival_10_%28cropped%29.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/e/ef/KatyPerryWestminst111224_%2881_of_95%29_%2854206733094%29_%28cropped_2%29.jpg"
         ],
         "correctIndex": 0

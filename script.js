@@ -45,7 +45,10 @@ function initGame() {
     shuffleArray(pool);
 
     while (questions.length < 80 && pool.length > 0) {
-        questions.push(pool.pop());
+        let candidate = pool.pop();
+        if (!questions.some(q => q.text === candidate.text)) {
+            questions.push(candidate);
+        }
     }
 
     // 2.5 Shuffle entire combined pool so it's different per player!

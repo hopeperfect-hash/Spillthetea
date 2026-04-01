@@ -76,6 +76,19 @@ def find_celebrity(text):
                 return celeb, group
     return None, None
 
+def convert_to_question(text):
+    if text.endswith('?'):
+        return text
+        
+    if text.startswith("This Celebrity was"):
+        return text.replace("This Celebrity was", "Was This Celebrity", 1).rstrip('.') + "?"
+    elif text.startswith("This Celebrity is"):
+        return text.replace("This Celebrity is", "Is This Celebrity", 1).rstrip('.') + "?"
+    elif text.startswith("This Celebrity has"):
+        return text.replace("This Celebrity has", "Has This Celebrity", 1).rstrip('.') + "?"
+        
+    return "Wait, is it true that " + text[0].lower() + text[1:].rstrip('.') + "?"
+
 def main():
     try:
         all_items = []
@@ -164,8 +177,9 @@ def main():
                     print(f"Skipping question due to missing photos for {options[0]} or {options[1]}")
                     continue
 
+                question_text = convert_to_question(clean_text)
                 valid_questions.append({
-                    "text": clean_text,
+                    "text": question_text,
                     "options": options,
                     "images": [img1, img2],
                     "correctIndex": correct_index
